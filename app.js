@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 This Bot uses the Bot Connector Service and is designed to educate on Swachh Bharat Mission. 
-The bot presents an interactive menu to user using which the user can get information
+The bot presents an interactive menu to user using which the user can get information info
 about the mission. 
 -----------------------------------------------------------------------------*/
 
