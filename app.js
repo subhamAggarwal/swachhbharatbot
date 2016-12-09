@@ -140,7 +140,7 @@ bot.dialog("/englishOrHindi", [
 bot.dialog('/photo', [
     function (session, results) {
         // session.send("Please upload a photo");
-        builder.Prompts.attachment(session, "You can contribute to Swachh Bharat Mission by uploading a photo");
+        builder.Prompts.attachment(session, "Send us a photo of your contribution to Swaach Bharat Mission, we will publish the photo on our facebook page and send you a link");
     },
     function (session, results) {
         var msg = new builder.Message(session)
