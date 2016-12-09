@@ -1,7 +1,7 @@
 {
   "name": "SwachhBharatMission",
   "version": "1.0.0",
-  "description": "This app explains Swachh Bharat Mission",
+  "description": "This app explains Swachh Bharat Mission bot",
   "scripts": {
     "start":"node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
