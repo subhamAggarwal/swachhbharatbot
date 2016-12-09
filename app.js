@@ -75,9 +75,9 @@ bot.dialog('/', [
 bot.dialog('/menu', [
     function (session) {
         if (session.userData.language === "en")
-            builder.Prompts.choice(session, "Choose an option?", "Tell me more|Objective|Upload a photo|Switch to Hindi|Quit");
+            builder.Prompts.choice(session, "Choose an option?", "Tell me more|Objective|Upload a photo|Switch to Hindi|Quit",{listStyle:button});
         else
-            builder.Prompts.choice(session, "एक विकल्प चुनें?", "और बताओ|उद्देश्य|फोटो अपलोड|अंग्रेजी|अलविदा");
+            builder.Prompts.choice(session, "एक विकल्प चुनें?", "और बताओ|उद्देश्य|फोटो अपलोड|अंग्रेजी|अलविदा",{listStyle:button});
         // builder.Prompts.choice(session, "What would you like to run?", "prompts|picture|cards|list|carousel|receipt|actions|(quit)");
     },
     function (session, results) {
