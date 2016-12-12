@@ -27,6 +27,22 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 //=========================================================
+// Activity Events
+//=========================================================
+
+bot.on('contactRelationUpdate', function (message) {
+    if (message.action === 'add') {
+        var name = message.user ? message.user.name : null;
+        var reply = new builder.Message()
+                .address(message.address)
+                .text("Hello %s... Thanks for adding me. Say 'hello' to see some great demos.", name || 'there');
+        bot.send(reply);
+    } else {
+        // delete their data
+    }
+});
+
+//=========================================================
 // Bots Middleware
 //=========================================================
 
