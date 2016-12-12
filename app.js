@@ -34,7 +34,7 @@ bot.on('contactRelationUpdate', function (message) {
                 .text("Welcome %s to Swachh Bharat Mission, to know more choose any of the below options.", name || 'User');
 
         bot.send(reply);
-        bot.beginDialog('/');
+        bot.beginDialog('/firstRun');
     } else {
         // delete their data
     }
@@ -85,6 +85,29 @@ bot.dialog('/', [
     function (session, results) {
         // Always say goodbye
         session.send("Ok... See you later!");
+    }
+]);
+
+bot.dialog("/firstRun", [
+    function(session){
+        var skypeUserName = "Amit Gupta";
+        session.userData.language = "en";
+        if (session.message && session.message.user && session.message.user.name)
+            skypeUserName = session.message.user.name;
+        // Send a greeting and show help.
+        var card = new builder.HeroCard(session)
+            .title("Swachh Bharat Mission")
+            .text("Welcome " + skypeUserName + " to Swachh Bharat Mission, to know more choose any of the below options.")
+            .images([
+                 builder.CardImage.create(session, "http://sbm.gov.in/sbm/images/logo2.png")
+            ]);
+        var msg = new builder.Message(session).attachments([card]);
+        session.send(msg);
+
+        session.beginDialog('/help');
+    },
+    function(session, results){
+        session.beginDialog('/menu');
     }
 ]);
 
