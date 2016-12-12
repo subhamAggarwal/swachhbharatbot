@@ -35,8 +35,10 @@ bot.on('contactRelationUpdate', function (message) {
         var name = message.user ? message.user.name : null;
         var reply = new builder.Message()
                 .address(message.address)
-                .text("Hello %s... Thanks for adding me. Say 'hello' to see some great demos.", name || 'there');
+                .text("Welcome %s to Swachh Bharat Mission, to know more choose any of the below options.", name || 'User');
+
         bot.send(reply);
+        bot.beginDialog('/firstRun');
     } else {
         // delete their data
     }
@@ -55,6 +57,30 @@ bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i
 
 bot.endConversationAction('goodbye', 'Goodbye :)', { matches: /^goodbye/i });
 bot.beginDialogAction('help', '/help', { matches: /^help/i });
+/*bot.on("UserAddedToConversation", function(data){
+    session.send("Added a new bot");
+});*/
+// bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
+bot.dialog('/firstRun', [
+    function (session, results) {
+        // We'll save the users name and send them an initial greeting. All 
+        // future messages from the user will be routed to the root dialog.
+        session.userData.language = "en";
+        // session.userData.name = results.response;
+        // Send a greeting and show help.
+        var card = new builder.HeroCard(session)
+            .title("Swachh Bharat Mission")
+            // .text("Welcome " + skypeUserName + " to Swachh Bharat Mission, to know more choose any of the below options.")
+            .images([
+                 builder.CardImage.create(session, "http://sbm.gov.in/sbm/images/logo2.png")
+            ]);
+        var msg = new builder.Message(session).attachments([card]);
+        // session.send(msg);
+        // session.endDialog();
+        session.endDialog("Click or Tap on any of the options.");
+        session.beginDialog("/");
+    }
+]);
 
 //=========================================================
 // Bots Dialogs
@@ -62,9 +88,9 @@ bot.beginDialogAction('help', '/help', { matches: /^help/i });
 
 bot.dialog('/', [
     function (session) {
-        var skypeUserName = "Amit Gupta";
-        session.userData.language = "en";
-        if (session.message && session.message.user && session.message.user.name)
+        // var skypeUserName = "Amit Gupta";
+        // session.userData.language = "en";
+        /*if (session.message && session.message.user && session.message.user.name)
             skypeUserName = session.message.user.name;
         // Send a greeting and show help.
         var card = new builder.HeroCard(session)
@@ -74,7 +100,7 @@ bot.dialog('/', [
                  builder.CardImage.create(session, "http://sbm.gov.in/sbm/images/logo2.png")
             ]);
         var msg = new builder.Message(session).attachments([card]);
-        session.send(msg);
+        session.send(msg);*/
         // session.send("Hi... I'm the Microsoft Bot Framework demo bot for Skype. I can show you everything you can use our Bot Builder SDK to do on Skype.");
         session.beginDialog('/help');
     },
