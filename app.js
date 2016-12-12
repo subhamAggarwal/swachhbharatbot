@@ -61,10 +61,10 @@ bot.beginDialogAction('help', '/help', { matches: /^help/i });
 //=========================================================
 
 bot.dialog('/', [
-    function (session) {
+    /*function (session) {
         //var skypeUserName = "Amit Gupta";
         session.userData.language = "en";
-        /*if (session.message && session.message.user && session.message.user.name)
+        if (session.message && session.message.user && session.message.user.name)
             skypeUserName = session.message.user.name;
         // Send a greeting and show help.
         var card = new builder.HeroCard(session)
@@ -74,12 +74,14 @@ bot.dialog('/', [
                  builder.CardImage.create(session, "http://sbm.gov.in/sbm/images/logo2.png")
             ]);
         var msg = new builder.Message(session).attachments([card]);
-        session.send(msg);*/
-        session.send("To know more choose any of the below options: ");
+        session.send(msg);
+        // session.send("To know more choose any of the below options: ");
         session.beginDialog('/help');
-    },
-    function (session, results) {
+    },*/
+    function (session/*, results*/) {
+        session.userData.language = "en";
         // Display menu
+        session.send("Type 'Menu' any time to visit the options again.");
         session.beginDialog('/menu');
     },
     function (session, results) {
